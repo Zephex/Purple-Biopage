@@ -1,0 +1,13 @@
+[Unit]
+Description=Personal bio system monitor bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/system-monitor-bridge
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

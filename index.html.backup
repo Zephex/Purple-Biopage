@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090a0f" />
+  <meta name="description" content="__BIO_PREVIEW_DESCRIPTION__" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="__BIO_PREVIEW_TITLE__" />
+  <meta property="og:description" content="__BIO_PREVIEW_DESCRIPTION__" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="__BIO_PREVIEW_TITLE__" />
+  <meta name="twitter:description" content="__BIO_PREVIEW_DESCRIPTION__" />
+  <title>__BIO_PREVIEW_TITLE__</title>
+  <link rel="icon" id="site-icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; --bg-rgb:9,10,15; --panel-rgb:19,20,29; --card-opacity:.78; --gradient1-rgb:40,32,71; --gradient2-rgb:18,37,30; --status-online:#5cf0b2; --status-offline:#f08080; --bg:rgb(var(--bg-rgb)); --panel:rgba(var(--panel-rgb),var(--card-opacity)); --line:rgba(255,255,255,.09); --muted:#9293a3; --text:#f4f3fa; --violet:#a78bfa; --mint:#7ce7c2; }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100vh; color:var(--text); font-family:'DM Sans',sans-serif; background:radial-gradient(ellipse at 50% 0%,rgba(var(--gradient1-rgb),.95) 0,transparent 46%),radial-gradient(ellipse at 100% 70%,rgba(var(--gradient2-rgb),.9) 0,transparent 36%),var(--bg); }
+    #page-background { position:fixed;inset:0;z-index:-1;background-position:center;background-size:cover;background-attachment:fixed;pointer-events:none }
+    #page-background:after { content:"";position:absolute;inset:0;background:linear-gradient(rgba(var(--bg-rgb),.48),rgba(var(--bg-rgb),.72));pointer-events:none }
+    #page-background video { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72 }
+    #page-background video[hidden] { display:none }
+    body:before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.13; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E"); }
+    main { width:min(100% - 32px, 540px); margin:0 auto; padding:74px 0 48px; position:relative; }
+    .topline { display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:25px; }
+    .availability[hidden] { display:none }
+    .availability { display:flex; gap:8px; align-items:center; letter-spacing:0; text-transform:none; }
+    .dot { width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px #7ce7c2aa }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:22px; backdrop-filter:blur(18px); box-shadow:0 24px 80px #0005; }
+    .profile { padding:25px; position:relative; overflow:hidden; }
+    .profile:after { content:""; position:absolute; width:220px;height:220px;border-radius:50%;right:-100px;top:-130px;background:rgba(var(--gradient1-rgb),.18);filter:blur(14px); }
+    .identity { display:flex; gap:17px; align-items:center; position:relative; z-index:1; }
+    .avatar { width:76px;height:76px;border-radius:24px;display:grid;place-items:center;flex:none;font:700 28px 'Space Grotesk';background:linear-gradient(145deg,#b9a5ff,#6044aa 65%,#29223c);border:1px solid #ffffff33;box-shadow:0 8px 30px #8e69ff33;overflow:hidden; }
+    .avatar img { width:100%;height:100%;object-fit:cover }
+    h1 { font:600 25px 'Space Grotesk',sans-serif; margin:0 0 5px; letter-spacing:-.04em; }
+    .handle { display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px }
+    .handle-button { border:0;padding:0;background:transparent;color:inherit;font:inherit;cursor:pointer }
+    .handle-button:hover { color:var(--text) }.handle-button:focus-visible{outline:1px solid var(--violet);outline-offset:3px;border-radius:3px}
+    .bio { color:#c6c5d1; font-size:14px; line-height:1.65; margin:22px 0 19px; max-width:410px; }
+    .chips { display:flex;gap:8px;flex-wrap:wrap }
+    .chip { border:1px solid var(--line); border-radius:999px; padding:7px 10px; color:#c9c7d4; font-size:11px; background:#ffffff06; }
+    .section-label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.13em; margin:27px 2px 11px; }
+    .presence { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:27px }
+    .presence-card { min-height:145px;padding:16px;position:relative;overflow:hidden }
+    .steam-card { grid-column:1/-1;min-height:105px }
+    .steam-game-row { display:flex;align-items:center;gap:14px;margin-top:16px }
+    .steam-game-art { display:block;width:120px;height:56px;flex:none;object-fit:cover;border-radius:9px;background:#090a0f }
+    .steam-game-art[hidden],.steam-time[hidden] { display:none }
+    .steam-game-copy { min-width:0 }
+    .steam-game-copy .state { margin-top:0 }
+    .steam-time { margin-top:7px }
+    .twitch-card { min-height:100px;margin-top:20px }
+    .twitch-player { display:block;width:100%;height:300px;margin-top:14px;border:0;border-radius:12px;background:#090a0f }
+    .twitch-player[hidden] { display:none }
+    .twitch-mobile-link { display:none;color:var(--mint);margin-top:12px }
+    .presence-head { display:flex;align-items:center;gap:8px;font-size:12px;color:#d8d7e1;font-weight:600 }
+    .presence-status { display:inline-flex;align-items:center;gap:7px;margin-left:auto;border:1px solid #ffffff16;border-radius:999px;padding:5px 9px;background:#ffffff08;color:#a4a4b2;font:700 9px 'DM Sans',sans-serif;letter-spacing:.12em;line-height:1;text-transform:uppercase;white-space:nowrap }
+    #discord-online-status { margin-left:0 }
+    .presence-status:before { content:"";width:7px;height:7px;border-radius:50%;background:#858594;box-shadow:0 0 0 3px #85859418 }
+    .presence-status.online { color:var(--status-online);border-color:color-mix(in srgb,var(--status-online) 28%,transparent);background:color-mix(in srgb,var(--status-online) 6%,transparent);box-shadow:inset 0 1px #ffffff0a }
+    .presence-status.online:before { background:var(--status-online);box-shadow:0 0 0 3px color-mix(in srgb,var(--status-online) 12%,transparent),0 0 12px color-mix(in srgb,var(--status-online) 50%,transparent) }
+    .presence-status.offline { color:var(--status-offline);border-color:color-mix(in srgb,var(--status-offline) 26%,transparent);background:color-mix(in srgb,var(--status-offline) 5%,transparent) }
+    .presence-status.offline:before { background:var(--status-offline);box-shadow:0 0 0 3px color-mix(in srgb,var(--status-offline) 10%,transparent),0 0 10px color-mix(in srgb,var(--status-offline) 35%,transparent) }
+    .discord-footer { display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:22px;margin-top:12px }
+    .discord-footer .subtle { margin-top:0 }
+    .discord-name { margin-left:auto;max-width:118px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font:400 10px 'DM Sans',sans-serif;border:0;padding:0;background:transparent;text-align:right;cursor:pointer }
+    .discord-name:hover { color:var(--text) }.discord-name:focus-visible{outline:1px solid var(--violet);outline-offset:3px;border-radius:3px}.copy-notice{color:var(--mint);font-size:9px;white-space:nowrap}
+    .brand-icon { width:25px;height:25px;border-radius:8px;display:grid;place-items:center;background:#ffffff0c;font-size:13px; }
+    .state { margin-top:16px;font:600 15px 'Space Grotesk';letter-spacing:-.02em }
+    .spotify-track-title { display:block;width:100%;padding:0;border:0;background:transparent;color:var(--text);text-align:left;cursor:pointer }
+    .spotify-track-title:disabled { cursor:default }
+    .spotify-track-title:not(:disabled):hover { color:#b9f4cb;text-decoration:underline;text-underline-offset:3px }
+    .detail { font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45 }
+    .subtle { font-size:10px;color:#747586;margin-top:12px }
+    .spotify-copy-link { margin-top:10px;padding:6px 9px;border:1px solid var(--line);border-radius:9px;background:#ffffff08;color:#c9c7d4;font:500 10px 'DM Sans',sans-serif;cursor:pointer }
+    .spotify-copy-link:hover { border-color:#1ed76088;color:var(--text) }
+    .spotify-copy-link[hidden] { display:none }
+    .spotify-copy-status { display:inline-block;margin-left:7px;color:var(--mint);font-size:10px }
+    .equalizer { display:flex;align-items:end;gap:3px;height:15px;margin-left:auto }
+    .equalizer i { display:block;width:3px;border-radius:4px;background:var(--mint);animation:wave .8s ease-in-out infinite alternate }
+    .equalizer i:nth-child(1){height:6px}.equalizer i:nth-child(2){height:13px;animation-delay:.2s}.equalizer i:nth-child(3){height:9px;animation-delay:.4s}.equalizer i:nth-child(4){height:12px;animation-delay:.1s}
+    @keyframes wave { to { height:4px;opacity:.6 } }
+    .links { display:grid;gap:10px }
+    .links.layout-horizontal { display:flex;flex-wrap:wrap;align-items:stretch }
+    .links.layout-horizontal .link:not(.icon-only) { flex:1 1 180px;min-width:0 }
+    .links.layout-horizontal .link.icon-only { flex:0 0 62px }
+    .links.icon-grid { display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px }
+    .links.icon-grid .link.icon-only { width:100%;height:auto;min-width:0;aspect-ratio:1;padding:7px }
+    .links.icon-grid .link-icon { width:34px;height:34px;max-width:100%;max-height:100% }
+    .link { display:flex;align-items:center;gap:13px;padding:14px 16px;color:var(--text);text-decoration:none;transition:transform .2s,border-color .2s; }
+    .link:hover { transform:translateY(-2px);border-color:#a78bfa66 }
+    .link.icon-only { width:62px;height:62px;justify-content:center;padding:10px }
+    .link-icon { width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#ffffff0b;font-size:14px;color:#dcd5ff }.link-icon img{width:24px;height:24px;object-fit:contain}
+    .link-copy { flex:1 }.link-title { font-size:13px;font-weight:600 }.link-desc { color:var(--muted);font-size:11px;margin-top:3px }.arrow { color:#777788;font-size:17px }
+    footer { text-align:center;color:#6e6f7d;font-size:11px;margin-top:23px } footer a { color:inherit;text-decoration:none;margin-left:8px } footer a:hover { color:var(--violet) }
+    @media(max-width:430px) { main{padding-top:38px}.presence{grid-template-columns:1fr}.presence-card{min-height:126px}.profile{padding:20px}.avatar{width:66px;height:66px;border-radius:21px}.links.icon-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.twitch-player{display:none}.twitch-mobile-link{display:inline-block} }
+    @media(max-width:492px) { .twitch-player{display:none}.twitch-mobile-link{display:inline-block} }
+    @media(prefers-reduced-motion:reduce) { *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+  </style>
+</head>
+<body>
+  <div id="page-background" aria-hidden="true"><video id="page-background-video" autoplay muted loop playsinline preload="metadata" hidden></video></div>
+  <main>
+    <div class="topline"><span id="top-label">PERSONAL SPACE / 001</span><span class="availability" id="status-display"><i class="dot"></i> <span id="status-line">around & making things</span></span></div>
+    <section class="card profile" aria-labelledby="name">
+      <div class="identity"><div class="avatar" id="avatar" aria-hidden="true"><span id="avatar-text">Z</span><img id="avatar-image" alt="" hidden /></div><div><h1 id="name">Purple</h1><div class="handle"><button class="handle-button" id="handle-copy" type="button" aria-label="Copy profile handle">@purple</button><span id="pronouns"></span><span id="handle-copy-notice" class="copy-notice" aria-live="polite"></span></div></div></div>
+      <p class="bio" id="bio">Add a short intro in the admin page.</p>
+      <div class="chips" id="chips"></div>
+    </section>
+    <section class="presence" aria-label="Live activity">
+      <article class="card presence-card"><div class="presence-head"><span id="discord-online-status" class="presence-status" role="status" aria-live="polite">Unknown</span><button class="discord-name" id="discord-name" type="button" aria-label="Copy Discord username"></button><span id="discord-copy-notice" class="copy-notice" aria-live="polite"></span></div><img id="discord-presence-art" alt="Custom Discord activity image" hidden style="width:52px;height:52px;object-fit:cover;border-radius:10px;margin-top:12px" /><div class="state" id="discord-state">Add your Discord ID</div><div class="detail" id="discord-detail">Live status will show here once connected.</div><div class="discord-footer"><div class="subtle" id="discord-note">presence setup needed</div></div></article>
+      <article class="card presence-card"><div class="presence-head"><span class="brand-icon">♫</span> Spotify <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div><img id="spotify-art" alt="" hidden style="width:42px;height:42px;object-fit:cover;border-radius:8px;margin-top:12px" /><button class="state spotify-track-title" id="spotify-state" type="button" disabled>Your soundtrack</button><div class="detail" id="spotify-detail">Your current track will show here.</div><button id="spotify-copy-link" class="spotify-copy-link" type="button" hidden>Copy Spotify track link</button><span id="spotify-copy-status" class="spotify-copy-status" aria-live="polite"></span><div class="subtle" id="spotify-note">Waiting for Spotify bridge</div></article>
+      <article class="card presence-card steam-card"><div class="presence-head"><span class="brand-icon">🎮</span> Steam <span id="steam-online-status" class="presence-status" role="status" aria-live="polite">Unknown</span></div><div class="steam-game-row"><img id="steam-art" class="steam-game-art" alt="" hidden /><div class="steam-game-copy"><div class="state" id="steam-state">Steam bridge not connected</div><div class="detail" id="steam-detail">Set up the Steam bridge on your computer to show what you’re playing.</div><div class="subtle steam-time" id="steam-time" hidden></div></div></div><div class="subtle" id="steam-note">Steam · not connected</div></article>
+    </section>
+    <div class="section-label" id="links-heading">find me elsewhere</div>
+    <nav class="links" id="links" aria-label="Social links"></nav>
+    <article class="card presence-card twitch-card" id="twitch-card" hidden><div class="presence-head"><span class="brand-icon">T</span> Twitch · LIVE</div><div class="state" id="twitch-title"></div><div class="detail" id="twitch-game"></div><iframe id="twitch-player" class="twitch-player" title="Live Twitch stream" width="100%" height="300" allowfullscreen allow="autoplay; fullscreen; picture-in-picture" loading="lazy" hidden></iframe><a id="twitch-mobile-link" class="twitch-mobile-link" target="_blank" rel="noopener noreferrer">Watch on Twitch ↗</a></article>
+    <footer id="footer-text"></footer>
+  </main>
+  <script type="module">
+    import { detectPlatform, getPlatformLabel, getSocialIconSvg } from '/social-icons.mjs?v=20261102-iconpicker-refresh';
+    const safeLink = (value) => { try { const url = new URL(value, window.location.origin); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; } catch { return ''; } };
+    function applyProfile(profile) {
+      document.title = profile.pageTitle || `${profile.displayName || 'Purple'} — links & now playing`;
+      const previewTitle = profile.embedTitle || profile.pageTitle || `${profile.displayName || 'Purple'} — links & now playing`;
+      const previewDescription = profile.embedDescription || profile.bio || 'A little corner of the internet.';
+      document.querySelector('meta[name="description"]').content = previewDescription;
+      document.querySelector('meta[property="og:title"]').content = previewTitle;
+      document.querySelector('meta[property="og:description"]').content = previewDescription;
+      document.querySelector('meta[name="twitter:title"]').content = previewTitle;
+      document.querySelector('meta[name="twitter:description"]').content = previewDescription;
+      document.querySelector('#name').textContent = profile.displayName || 'Purple';
+      document.querySelector('#top-label').textContent = profile.topLabel || '';
+      document.querySelector('#links-heading').textContent = profile.linksHeading || '';
+      const discordName=document.querySelector('#discord-name');
+      discordName.textContent=profile.discordUsername || '';
+      discordName.title=profile.discordUsername ? `Click to copy ${profile.discordUsername}` : 'Discord username unavailable';
+      discordName.setAttribute('aria-label',profile.discordUsername ? `Copy Discord username ${profile.discordUsername}` : 'Discord username unavailable');
+      discordName.hidden=!profile.discordUsername;
+      const discordArt=document.querySelector('#discord-presence-art');
+      const discordArtUrl=safeLink(profile.discordPresenceImageUrl);
+      if(discordArtUrl){discordArt.src=discordArtUrl;discordArt.hidden=false}else{discordArt.hidden=true;discordArt.removeAttribute('src')}
+      const handleButton=document.querySelector('#handle-copy');
+      handleButton.textContent=profile.handle || '';
+      handleButton.hidden=!profile.handle;
+      handleButton.title=profile.handle ? `Click to copy ${profile.handle}` : 'No profile handle set';
+      document.querySelector('#pronouns').textContent=profile.pronouns ? `· ${profile.pronouns}` : '';
+      document.querySelector('#status-line').textContent = profile.status || 'around & making things';
+      document.querySelector('#status-display').hidden = profile.showStatus === false;
+      document.querySelector('#bio').textContent = profile.bio || '';
+      document.querySelector('#footer-text').textContent = profile.footerText || '';
+      document.documentElement.style.setProperty('--violet', profile.accent || '#a78bfa');
+      document.documentElement.style.setProperty('--mint', profile.highlight || '#7ce7c2');
+      document.documentElement.style.setProperty('--status-online', profile.onlineStatusColor || '#5cf0b2');
+      document.documentElement.style.setProperty('--status-offline', profile.offlineStatusColor || '#f08080');
+      const toRgb = (hex) => (hex || '').replace('#','').match(/.{2}/g)?.map(part => parseInt(part,16)).join(',') || '';
+      document.documentElement.style.setProperty('--bg-rgb', toRgb(profile.pageBackgroundColor) || '9,10,15');
+      document.documentElement.style.setProperty('--panel-rgb', toRgb(profile.cardColor) || '19,20,29');
+      document.documentElement.style.setProperty('--card-opacity', String(Math.min(100,Math.max(20,Number(profile.cardOpacity ?? 78)))/100));
+      document.documentElement.style.setProperty('--gradient1-rgb', toRgb(profile.gradientColor1) || '40,32,71');
+      document.documentElement.style.setProperty('--gradient2-rgb', toRgb(profile.gradientColor2) || '18,37,30');
+      const backgroundUrl = safeLink(profile.backgroundUrl);
+      const backgroundVideoUrl = safeLink(profile.backgroundVideoUrl);
+      const background = document.querySelector('#page-background');
+      const backgroundVideo = document.querySelector('#page-background-video');
+      background.style.backgroundImage = backgroundUrl && !backgroundVideoUrl ? `url("${backgroundUrl}")` : '';
+      if(backgroundVideoUrl){if(backgroundVideo.src!==backgroundVideoUrl){backgroundVideo.src=backgroundVideoUrl;backgroundVideo.load()}backgroundVideo.hidden=false;backgroundVideo.play().catch(()=>{})}
+      else{backgroundVideo.pause();backgroundVideo.removeAttribute('src');backgroundVideo.load();backgroundVideo.hidden=true}
+      document.querySelector('#site-icon').href = safeLink(profile.iconUrl) || '/favicon.svg';
+      const avatarText = document.querySelector('#avatar-text');
+      const avatarImage = document.querySelector('#avatar-image');
+      if (safeLink(profile.avatarUrl)) { avatarImage.src = profile.avatarUrl; avatarImage.hidden = false; avatarText.hidden = true; }
+      else { avatarImage.hidden = true; avatarText.hidden = false; avatarText.textContent = profile.avatarText || 'Z'; }
+      const chips = document.querySelector('#chips');
+      chips.replaceChildren(...(profile.chips || []).map(label => { const chip=document.createElement('span'); chip.className='chip'; chip.textContent=label; return chip; }));
+      const links = document.querySelector('#links');
+      links.classList.toggle('layout-horizontal',profile.linkLayout==='horizontal');
+      links.classList.toggle('layout-vertical',profile.linkLayout!=='horizontal');
+      links.replaceChildren(...(profile.links || []).map(item => {
+        const href=safeLink(item.url); if (!href) return null;
+        const platform=item.platform || detectPlatform(item.url); const title=(item.title || '').trim(); const description=(item.description || '').trim(); const iconOnly=!title && !description;
+        const a=document.createElement('a'); a.className=`card link${iconOnly?' icon-only':''}`; a.href=href; a.target='_blank'; a.rel='noopener noreferrer';
+        const icon=document.createElement('span'); icon.className='link-icon'; icon.setAttribute('aria-hidden','true'); if(platform) icon.innerHTML=getSocialIconSvg(platform); else icon.textContent=(title[0] || '↗').toUpperCase();
+        if(iconOnly){let name=platform?getPlatformLabel(platform):'';try{name=name||new URL(href).hostname.replace(/^www\./,'')}catch{}a.setAttribute('aria-label',name||'Open link')}
+        const copy=document.createElement('span'); copy.className='link-copy';
+        const titleElement=document.createElement('span'); titleElement.className='link-title'; titleElement.textContent=title;
+        const desc=document.createElement('span'); desc.className='link-desc'; desc.textContent=description;
+        const arrow=document.createElement('span'); arrow.className='arrow'; arrow.textContent='↗';
+        if(!iconOnly){copy.append(titleElement, desc);a.append(icon,copy,arrow)}else a.append(icon); return a;
+      }).filter(Boolean));
+      links.classList.toggle('icon-grid',links.children.length>0&&[...links.children].every(link=>link.classList.contains('icon-only')));
+    }
+    function startPresence(DISCORD_ID, DISCORD_USERNAME) {
+      const state=document.querySelector('#discord-state');
+      const detail=document.querySelector('#discord-detail');
+      const note=document.querySelector('#discord-note');
+      const discordName=document.querySelector('#discord-name');
+      const discordOnlineStatus=document.querySelector('#discord-online-status');
+      const spotifyState=document.querySelector('#spotify-state');
+      const spotifyDetail=document.querySelector('#spotify-detail');
+      const spotifyNote=document.querySelector('#spotify-note');
+      const spotifyArt=document.querySelector('#spotify-art');
+      const spotifyCopyLink=document.querySelector('#spotify-copy-link');
+      const spotifyCopyStatus=document.querySelector('#spotify-copy-status');
+      let currentSpotifyUrl='';
+      discordName.textContent=DISCORD_USERNAME||'';
+      discordName.hidden=!discordName.textContent;
+      const setDiscordOnline=(online)=>{discordOnlineStatus.classList.toggle('online',online===true);discordOnlineStatus.classList.toggle('offline',online===false);discordOnlineStatus.textContent=online===true?'Online':online===false?'Offline':'Unknown'};
+      setDiscordOnline(null);
+      async function copySpotifyUrl(){if(!currentSpotifyUrl)return;try{await navigator.clipboard.writeText(currentSpotifyUrl);spotifyCopyStatus.textContent='Copied!';setTimeout(()=>spotifyCopyStatus.textContent='',1500)}catch{spotifyCopyStatus.textContent='Copy failed';setTimeout(()=>spotifyCopyStatus.textContent='',1800)}}
+      spotifyCopyLink.addEventListener('click',copySpotifyUrl);
+      spotifyState.addEventListener('click',copySpotifyUrl);
+      async function loadSpotifyPresence(){try{const response=await fetch('/api/spotify/presence',{cache:'no-store'});if(!response.ok)throw Error('Spotify presence unavailable');const presence=await response.json();if(presence.playing){spotifyState.textContent=presence.song||'Listening on Spotify';spotifyDetail.textContent=[presence.artist,presence.album].filter(Boolean).join(' · ')||'Spotify';spotifyNote.textContent='Spotify · now playing';if(presence.albumArtUrl){if(spotifyArt.src!==presence.albumArtUrl)spotifyArt.src=presence.albumArtUrl;spotifyArt.hidden=false}else{spotifyArt.hidden=true;spotifyArt.removeAttribute('src')}currentSpotifyUrl=presence.spotifyUrl||'';spotifyCopyLink.hidden=!currentSpotifyUrl;spotifyState.disabled=!currentSpotifyUrl;spotifyState.title=currentSpotifyUrl?'Click the song title to copy its Spotify link':''}else{spotifyState.textContent='Not playing right now';spotifyDetail.textContent='Your current track will show here.';spotifyNote.textContent=presence.connected?'Spotify · connected':'Spotify · bridge not connected';spotifyArt.hidden=true;spotifyArt.removeAttribute('src');currentSpotifyUrl='';spotifyCopyLink.hidden=true;spotifyState.disabled=true;spotifyState.title='';spotifyCopyStatus.textContent=''}}catch{spotifyNote.textContent='Spotify · status unavailable; retrying'}}
+      loadSpotifyPresence();setInterval(loadSpotifyPresence,15000);
+      async function loadDiscordPresence(){
+        note.hidden=false;
+        if(!/^\d{17,20}$/.test(DISCORD_ID||'')){setDiscordOnline(null);state.textContent='Discord user ID needed';detail.textContent='Add your Discord user ID in the admin panel.';note.textContent='Discord · setup needed';return}
+        try{
+          const response=await fetch('/api/discord/presence',{cache:'no-store'});
+          if(!response.ok)throw Error('Discord presence unavailable');
+          const presence=await response.json();
+          if(!presence.configured){setDiscordOnline(null);state.textContent='Discord bot not connected';detail.textContent='Set up the Discord bot in your admin panel to show your activity.';note.textContent='Discord · bot setup needed';return}
+          if(!presence.connected){setDiscordOnline(null);state.textContent='Connecting to Discord';detail.textContent='The presence bot is reconnecting.';note.textContent='Discord · reconnecting';return}
+          if(!presence.targetSeen){setDiscordOnline(null);state.textContent='Waiting for your presence';detail.textContent='Make sure the bot and your Discord account share a server.';note.textContent='Discord · connected';return}
+          const status=presence.status||'offline';
+          setDiscordOnline(status!=='offline');
+          const activity=(presence.activities||[]).find(item=>item.name!=='Spotify'&&item.type!==4);
+          state.textContent=activity?.name||'No game activity right now.';
+          detail.textContent=activity?[activity.details,activity.state].filter(Boolean).join(' · '):'Your Discord activity will appear here.';
+          note.textContent='';note.hidden=true;
+        }catch{setDiscordOnline(null);state.textContent='Discord status unavailable';detail.textContent='Could not reach the presence bot.';note.textContent='Discord · retrying'}
+      }
+      loadDiscordPresence();setInterval(loadDiscordPresence,15000);
+    }
+    const steamArt=document.querySelector('#steam-art'),steamTime=document.querySelector('#steam-time');let steamSessionStartedAt=0;
+    function updateSteamTimer(){if(!steamSessionStartedAt){steamTime.hidden=true;return}const totalSeconds=Math.max(0,Math.floor((Date.now()-steamSessionStartedAt)/1000));const hours=Math.floor(totalSeconds/3600),minutes=Math.floor((totalSeconds%3600)/60),seconds=totalSeconds%60;const elapsed=hours?hours+'h '+minutes+'m':minutes?minutes+'m '+seconds+'s':seconds+'s';steamTime.textContent='Playing for '+elapsed;steamTime.hidden=false}
+    async function loadSteamPresence(){const state=document.querySelector('#steam-state'),detail=document.querySelector('#steam-detail'),note=document.querySelector('#steam-note'),onlineStatus=document.querySelector('#steam-online-status');try{const response=await fetch('/api/steam/presence',{cache:'no-store'});if(!response.ok)throw Error('Steam presence unavailable');const presence=await response.json();onlineStatus.classList.toggle('online',presence.connected&&presence.online===true);onlineStatus.classList.toggle('offline',presence.connected&&presence.online===false);onlineStatus.textContent=!presence.connected?'Unknown':presence.online===null?'Unknown':presence.online?'Online':'Offline';if(!presence.connected){steamSessionStartedAt=0;steamArt.hidden=true;steamArt.removeAttribute('src');state.textContent='Steam bridge not connected';detail.textContent='Start the Steam bridge on your computer to show what you’re playing.';note.textContent='Steam · not connected'}else if(presence.playing){state.textContent=presence.game;detail.textContent='Currently playing on Steam';note.textContent='Steam · playing now';steamSessionStartedAt=Number(presence.startedAt)||Date.now();const appId=String(presence.gameId||'');if(/^\d+$/.test(appId)){if(steamArt.dataset.appId!==appId){steamArt.dataset.appId=appId;steamArt.dataset.fallback='';steamArt.alt=presence.game+' artwork';steamArt.src='https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/'+appId+'/header.jpg';steamArt.onerror=()=>{if(!steamArt.dataset.fallback){steamArt.dataset.fallback='1';steamArt.src='https://cdn.akamai.steamstatic.com/steam/apps/'+appId+'/header.jpg'}else{steamArt.hidden=true}}}steamArt.hidden=false}else{steamArt.hidden=true;steamArt.removeAttribute('src')}}else{steamSessionStartedAt=0;steamArt.hidden=true;steamArt.removeAttribute('src');state.textContent='Not playing right now';detail.textContent='Steam is connected and waiting for a game.';note.textContent='Steam · connected'}}catch{steamSessionStartedAt=0;steamArt.hidden=true;onlineStatus.classList.remove('online','offline');onlineStatus.textContent='Unknown';state.textContent='Steam status unavailable';detail.textContent='Could not reach the Steam presence service.';note.textContent='Steam · retrying'}}
+    loadSteamPresence();setInterval(loadSteamPresence,15000);setInterval(updateSteamTimer,1000);
+    async function loadTwitchStatus(channel){const card=document.querySelector('#twitch-card'),player=document.querySelector('#twitch-player'),mobileLink=document.querySelector('#twitch-mobile-link');if(!channel){player.removeAttribute('src');player.hidden=true;card.hidden=true;return}try{const response=await fetch('/api/twitch/status',{cache:'no-store'});const status=await response.json();if(!response.ok||!status.online){player.removeAttribute('src');player.hidden=true;card.hidden=true;return}document.querySelector('#twitch-title').textContent=status.title||'Live now';document.querySelector('#twitch-game').textContent=[status.game,status.viewers?status.viewers.toLocaleString()+' watching':null].filter(Boolean).join(' · ');mobileLink.href='https://www.twitch.tv/'+encodeURIComponent(channel);card.hidden=false;if(window.innerWidth<=492){player.removeAttribute('src');player.hidden=true;return}player.src='https://player.twitch.tv/?channel='+encodeURIComponent(channel)+'&parent='+encodeURIComponent(window.location.hostname)+'&autoplay=false';player.hidden=false}catch{player.removeAttribute('src');player.hidden=true;card.hidden=true}}
+    let twitchChannel='';fetch('/api/profile').then(r=>r.json()).then(profile=>{twitchChannel=profile.twitchChannel||'';loadTwitchStatus(twitchChannel)}).catch(()=>{});setInterval(()=>loadTwitchStatus(twitchChannel),60000);
+    const discordCopyNotice=document.querySelector('#discord-copy-notice');
+    document.querySelector('#discord-name').addEventListener('click',async()=>{const username=document.querySelector('#discord-name').textContent.trim();if(!username)return;try{await navigator.clipboard.writeText(username);discordCopyNotice.textContent='Copied!';setTimeout(()=>discordCopyNotice.textContent='',1400)}catch{discordCopyNotice.textContent='Copy failed';setTimeout(()=>discordCopyNotice.textContent='',1800)}});
+    const handleCopyNotice=document.querySelector('#handle-copy-notice');
+    document.querySelector('#handle-copy').addEventListener('click',async()=>{const handle=document.querySelector('#handle-copy').textContent.trim();if(!handle)return;try{await navigator.clipboard.writeText(handle);handleCopyNotice.textContent='Copied!';setTimeout(()=>handleCopyNotice.textContent='',1400)}catch{handleCopyNotice.textContent='Copy failed';setTimeout(()=>handleCopyNotice.textContent='',1800)}});
+    fetch('/api/profile').then(r=>r.json()).then(profile=>{ applyProfile(profile); startPresence(profile.discordId, profile.discordUsername); }).catch(()=>{});
+  </script>
+</body>
+</html>

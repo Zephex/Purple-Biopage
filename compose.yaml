@@ -1,0 +1,19 @@
+name: purple-bio
+services:
+  bio:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      DATA_DIR: /data
+      DISCORD_ID: ${DISCORD_ID:-}
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - profile_data:/data
+
+volumes:
+  profile_data:
